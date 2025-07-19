@@ -25,9 +25,20 @@ class TextExtractor:
 
         self.name = self.document.name
         self.page_count = len(self.document)
+    
 
     def get_metadata(self):
         return self.metadata
+    
+    def get_page_dimensions(self, page_number):
+        if page_number < 0 or page_number >= self.page_count:
+            raise ValueError(f"Page number {page_number} is out of range. Document has {self.page_count} pages.")
+
+        page = self.document.load_page(page_number)
+        return {
+            "width": page.rect.width,
+            "height": page.rect.height,
+        }
 
     def extract_text_from_page(self, page_number):
         if page_number < 0 or page_number >= self.page_count:
@@ -109,5 +120,7 @@ if __name__ == "__main__":
     all_texts = extractor.extract_text_from_all_pages_multiprocessing()
     t1 = time.perf_counter()
     
-    # print(all_texts)
+    print(all_texts)
+    x = extractor.get_page_dimensions(0)
+    print(x)
     print(f"Multiprocessing time: {t1 - t0:.2f} seconds")
