@@ -40,6 +40,7 @@ class ChromaDBManager:
     
     def get_collection(self):
         """Return the collection instance"""
+        print(f"collection = {self.collection}\n")
         return self.collection
     
     def reset_collection(self):

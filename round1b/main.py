@@ -13,8 +13,8 @@ def main():
         collection_name="document_sections"
     )
     collection = db_manager.get_collection()
+    print(collection)
     
-    # Check if we already have data
     existing_count = db_manager.get_collection_stats()
     
     # Test data paths
@@ -55,9 +55,7 @@ def main():
     
     # Query examples
     queries = [
-        "Describe the differences between testing activities in Agile projects and non-Agile projects.",
-        "What are the main challenges in software testing?",
-        "How to implement quality assurance processes?"
+        "What are the main challenges in software testing?"
     ]
     
     print("\n" + "="*80)

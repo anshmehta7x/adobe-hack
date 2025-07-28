@@ -1,4 +1,3 @@
-# chroma.py - Improved version with better error handling and formatting
 import uuid
 from typing import List
 
