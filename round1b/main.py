@@ -66,6 +66,7 @@ from datetime import datetime
 from typing import List, Dict, Any
 from pathlib import Path
 
+import llm
 from extraction import extract_sections_from_outline
 from chroma import add_sections_to_chroma, query_chroma
 from dbManager import ChromaDBManager
@@ -182,7 +183,7 @@ class Round1BProcessor:
             print(f"Error ranking sections: {e}")
             return []
     
-    def extract_subsections(self, sections: List[Dict], max_subsections: int = 10) -> List[Dict]:
+    def extract_subsections(self, sections: List[Dict], persona,max_subsections: int = 10,) -> List[Dict]:
         """Extract and rank subsections from top sections"""
         subsections = []
         
@@ -198,7 +199,7 @@ class Round1BProcessor:
                         "document": section['document'],
                         "page_number": section['page_number'],
                         "section_title": f"{section['section_title']} - Part {i+1}",
-                        "refined_text": paragraph,
+                        "refined_text": llm.get_response(paragraph,persona),
                         "importance_rank": len(subsections) + 1
                     }
                     subsections.append(subsection)
@@ -280,7 +281,7 @@ class Round1BProcessor:
             
             # Extract subsections
             print(f"\nExtracting subsections from top {min(5, len(ranked_sections))} sections...")
-            subsections = self.extract_subsections(ranked_sections)
+            subsections = self.extract_subsections(ranked_sections,input_data.persona)
             
             # Generate output
             processing_time = time.time() - start_time

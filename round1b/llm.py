@@ -6,28 +6,18 @@ llm = Llama.from_pretrained(
     verbose=False
 )
 
-text= '''
-1. Make the desired changes in the app. Bear in mind the following: 
-• If you change the dimensions of the image, the image may not align correctly in 
-the PDF. 
-• Transparency information is preserved only for masks that are specified as 
-index values in an indexed color space. 
-• If you're working in Photoshop, flatten the image. 
-• Image masks aren't supported. 
-• If you change image modes while editing the image, you may lose valuable 
-information that can be applied only in the original mode. 
-•  2. In the editing app, choose File > Save. The object is automatically updated and 
-displayed in the PDF when you bring Acrobat to the foreground. 
-Note: For Photoshop, if the image is in a format supported by Photoshop 6.0 or later, your 
-edited image is saved back into the PDF. However, if the image is in an unsupported format, 
-Photoshop handles the image as a generic PDF image. The edited image is saved to disk 
-instead of the PDF.
-'''
+def get_response(prompt,persona):
+
+    words = prompt.split()
+    estimated_max_words = 512 * 0.75  # heuristic for token-to-word ratio
+    truncated_words = words[:int(estimated_max_words)]
+    truncated_prompt = " ".join(truncated_words)
 
 
-def get_response(prompt):
     messages = [
-        {"role": "user", "content": f"Summarise the following in 1 sentence, don't say anything else : {prompt}"}
+        {"role": "system", "content": f"{{Summarize the following text from point of view of a {persona} in exactly one sentence. No extra commentary."},
+        {"role": "user", "content": truncated_prompt}
     ]
     resp = llm.create_chat_completion(messages=messages)
-    return resp["choices"][0]["message"]["content"]
+    summary = resp["choices"][0]["message"]["content"]
+    return summary.strip()
