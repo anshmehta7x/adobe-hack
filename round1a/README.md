@@ -2,7 +2,7 @@
 
 ## Approach
 
-This solution uses a machine learning approach to extract structured outlines from PDF documents. The system combines text extraction, feature engineering, and classification to identify document titles and hierarchical headings (H1, H2, H3).
+Our solution uses an ML approach to extract structured outlines from PDF documents. The system combines text extraction, feature engineering, and classification to identify document titles and hierarchical headings (H1, H2, H3).
 
 ### Key Components
 
@@ -32,13 +32,6 @@ This solution uses a machine learning approach to extract structured outlines fr
 - **scikit-learn**: Random Forest classifier and preprocessing
 - **pandas**: Data manipulation and feature engineering
 - **joblib**: Model serialization and loading
-
-### Architecture Benefits
-
-- **Speed**: Multiprocessing text extraction for large documents
-- **Accuracy**: ML-based classification rather than simple font-size heuristics
-- **Robustness**: Works across different PDF formats and styling conventions
-- **Offline**: No external API dependencies
 
 ## How to Build and Run
 
@@ -80,3 +73,4 @@ docker run --rm -v $(pwd)/input:/app/input -v $(pwd)/output:/app/output --networ
 - **Memory**: Efficient processing with multiprocessing optimization
 - **Model Size**: ~200MB total including dependencies
 - **Accuracy**: Trained on diverse document types for robust heading detection
+- **Offline**: No external API dependencies
