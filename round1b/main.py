@@ -1,4 +1,3 @@
-# main.py - Docker-compatible version for Round 1B challenge
 import json
 import os
 import time
@@ -15,7 +14,7 @@ from models import DocumentSection, PersonaJobInput, ExtractedSection
 
 class Round1BProcessor:
     def __init__(self, persist_directory="/tmp/chroma_db_1b"):
-        """Initialize the Round 1B processor with its own ChromaDB instance"""
+
         self.db_manager = ChromaDBManager(
             persist_directory=persist_directory,
             collection_name="round1b_sections"
@@ -80,11 +79,10 @@ class Round1BProcessor:
         return all_sections
     
     def build_query_from_persona_job(self, persona: str, job_to_be_done: str) -> str:
-        """Build a comprehensive query from persona and job-to-be-done"""
         return f"Persona: {persona}. Task: {job_to_be_done}"
     
     def rank_sections_by_relevance(self, query: str, top_k: int = 20) -> List[Dict]:
-        """Query ChromaDB and return ranked sections"""
+       
         try:
             results = self.collection.query(
                 query_texts=[query],
@@ -129,7 +127,7 @@ class Round1BProcessor:
             paragraphs = [p.strip() for p in content.split('\n\n') if p.strip()]
             
             for i, paragraph in enumerate(paragraphs[:3]):  # Top 3 paragraphs per section
-                if len(paragraph) > 100:  # Only consider substantial paragraphs
+                if len(paragraph) > 100: 
                     try:
                         refined_text = llm.get_response(paragraph, persona)
                     except Exception as e:
@@ -240,7 +238,7 @@ class Round1BProcessor:
             
         except Exception as e:
             print(f"Error during processing: {e}")
-            # Create error output
+   
             error_output = {
                 "error": str(e),
                 "timestamp": datetime.now().isoformat(),

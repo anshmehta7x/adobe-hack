@@ -91,7 +91,7 @@ class PDFContentProcessor:
                                     if next_heading['text'].strip() == line.strip())
                     lines = lines[:next_index]
                     content_parts.append("\n".join(lines))
-                    break  # Stop at next heading
+                    break  
                 except StopIteration:
                     pass  # Keep full page if next heading not found
 

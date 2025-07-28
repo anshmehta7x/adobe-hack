@@ -33,6 +33,9 @@ Our solution uses an ML approach to extract structured outlines from PDF documen
 - **pandas**: Data manipulation and feature engineering
 - **joblib**: Model serialization and loading
 
+## Workflow 
+![Design and Approach](<assets/workflow.png>) 
+
 ## How to Build and Run
 
 ### Building the Docker Image

@@ -2,14 +2,14 @@
 
 ## Overview
 
-This solution implements an intelligent document analyst that extracts and prioritizes the most relevant sections from a collection of documents based on a specific persona and their job-to-be-done. The system uses semantic search with ChromaDB and on-device LLM processing to deliver contextual insights.
+Our solution implements an intelligent document analyst that extracts and prioritizes the most relevant sections from a collection of documents based on a specific persona and their job-to-be-done. The system uses semantic search with ChromaDB and on-device LLM processing to deliver contextual insights.
 
 ## Approach
 
 ### 1. **Document Processing Pipeline**
 
 - **PDF Text Extraction**: Uses LangChain's PyPDFLoader to extract text from PDF documents
-- **Section Extraction**: Leverages pre-computed document outlines (from Round 1A) to extract structured sections
+- **Section Extraction**: Uses pre-computed document outlines (from Round 1A) to extract structured sections
 - **Content Processing**: Removes heading duplicates and handles multi-page section content
 
 ### 2. **Semantic Search & Ranking**
@@ -24,11 +24,9 @@ This solution implements an intelligent document analyst that extracts and prior
 - **LLM Refinement**: Uses Gemma 3 1B model for persona-specific text summarization
 - **Contextual Processing**: Generates refined text from the persona's perspective
 
-### 4. **Architecture Highlights**
 
-- **Modular Design**: Separate components for extraction, database management, and LLM processing
-- **Error Handling**: Robust error handling with graceful degradation
-- **Memory Efficiency**: Batch processing and optimized model loading
+## Workflow 
+![Design and Approach](<assets/workflow.png>) 
 
 ## Models and Libraries Used
 
@@ -152,47 +150,4 @@ input/
 └── README.md          # This file
 ```
 
-## Error Handling
 
-The solution includes comprehensive error handling:
-
-- Missing file detection and graceful skipping
-- LLM processing fallbacks
-- JSON parsing error recovery
-- Memory management for large documents
-- Timeout handling for long-running processes
-
-## Optimization Notes
-
-- Uses temporary directory (`/tmp`) for ChromaDB to avoid permission issues
-- Implements batch processing for large document collections
-- Employs quantized models for memory efficiency
-- Includes proper cleanup and resource management
-
-# Approach Explanation: Persona-Driven Document Intelligence
-
-## Methodology Overview
-
-Our solution implements a three-stage pipeline that transforms raw document collections into persona-specific insights through semantic understanding and intelligent ranking.
-
-## Stage 1: Document Processing & Indexing
-
-We begin by processing PDF documents using their pre-computed structural outlines from Round 1A. The system extracts meaningful sections while preserving document hierarchy and page context. Each section is then vectorized using the `all-MiniLM-L6-v2` SentenceTransformer model, which provides high-quality embeddings optimized for semantic similarity tasks. These embeddings are stored in ChromaDB, creating a searchable knowledge base that maintains document provenance and structural metadata.
-
-## Stage 2: Persona-Aware Semantic Search
-
-The core innovation lies in our query construction approach. We combine the persona description with the job-to-be-done statement to create semantically rich queries that capture both role-specific expertise and task-specific requirements. ChromaDB's similarity search then ranks all document sections based on their semantic relevance to this combined query, ensuring that results align with both the user's professional context and immediate objectives.
-
-## Stage 3: Intelligent Sub-section Refinement
-
-For the top-ranked sections, we employ a two-level analysis approach. First, we segment content into coherent paragraphs to identify granular insights. Then, we leverage the quantized Gemma 3 1B model to generate persona-specific summaries of each subsection. This LLM processing ensures that complex technical content is interpreted through the lens of the specified persona, making the insights immediately actionable for the target user.
-
-## Technical Architecture
-
-The system employs a modular architecture with clear separation of concerns: document processing, vector storage, semantic search, and LLM inference. We use persistent ChromaDB storage with batch processing to handle document collections efficiently. The entire pipeline is designed to run offline on CPU-only environments, making it suitable for privacy-sensitive or resource-constrained deployments.
-
-## Optimization Strategy
-
-Our approach balances accuracy with performance through strategic model selection and processing optimizations. The lightweight embedding model ensures fast indexing and search, while the quantized LLM provides quality text refinement within memory constraints. We implement intelligent caching and batch processing to minimize computational overhead while maintaining high-quality results across diverse document types and personas.
-
-This methodology ensures robust performance across the challenge's diverse test cases, from academic research to business analysis, while maintaining consistent sub-60-second processing times.

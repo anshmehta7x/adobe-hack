@@ -1,18 +1,12 @@
-# extraction.py (or the file where extract_sections_from_outline is defined)
-
 from typing import List, Dict, Any
 from models import DocumentSection
-from processor import PDFContentProcessor # Make sure this import is correct
+from processor import PDFContentProcessor
 
 def extract_sections_from_outline(
     pdf_path: str,
     outline_data: Dict[str, Any]
 ) -> List[DocumentSection]:
-    """
-    Takes a PDF path and outline data, extracts actual content for each section.
-    Adds metadata like document name and page number.
-    """
-    # Create processor instance
+    
     processor = PDFContentProcessor()
 
     sections = []
