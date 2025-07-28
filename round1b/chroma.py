@@ -25,7 +25,7 @@ def add_sections_to_chroma(sections, collection):
             # Create unique ID
             section_id = f"{section.document_name}_{section.page_number}_{i}_{uuid.uuid4().hex[:8]}"
             
-            documents.append(section.content)
+            documents.append(f"{section.section_title}\n{section.content}")
             metadatas.append({
                 "title": section.section_title or "Untitled",
                 "content_length": len(section.content),

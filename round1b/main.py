@@ -18,8 +18,8 @@ def main():
     existing_count = db_manager.get_collection_stats()
     
     # Test data paths
-    pdf_path = "hackathon-task/sample-1a/Datasets/Pdfs/E0CCG5S312.pdf"
-    outline_json_path = "hackathon-task/sample-1a/Datasets/Output.json/E0CCG5S312.json"
+    pdf_path = "../hackathon-task/sample-1a/Datasets/Pdfs/E0CCG5S312.pdf"
+    outline_json_path = "../hackathon-task/sample-1a/Datasets/Output.json/E0CCG5S312.json"
     
     # Check if files exist
     if not os.path.exists(pdf_path):
@@ -53,22 +53,6 @@ def main():
         # Verify data was added
         db_manager.get_collection_stats()
     
-    # Query examples
-    queries = [
-        "What are the main challenges in software testing?"
-    ]
-    
-    print("\n" + "="*80)
-    print("PERFORMING SIMILARITY SEARCHES")
-    print("="*80)
-    
-    for i, query in enumerate(queries, 1):
-        print(f"\nQuery {i}: {query}")
-        print("-" * 60)
-        start_time = time.time()
-        query_chroma(query, collection, top_k=3)
-        query_time = time.time() - start_time
-        print(f"Query took {query_time:.2f} seconds.")
 
 if __name__ == "__main__":
     main()

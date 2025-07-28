@@ -121,7 +121,7 @@ def test_query():
     query = input("Enter your query: ")
     if query.strip():
         from chroma import query_chroma
-        query_chroma(query, collection, top_k=3)
+        query_chroma(query, collection, top_k=5)
     else:
         print("Empty query provided.")
 
