@@ -1,63 +1,3 @@
-# # main.py - Fixed version with proper ChromaDB configuration
-# import json
-# import time
-# import os
-# from extraction import extract_sections_from_outline
-# from chroma import add_sections_to_chroma, query_chroma
-# from dbManager import ChromaDBManager
-
-# def main():
-#     # Initialize ChromaDB with persistent storage
-#     db_manager = ChromaDBManager(
-#         persist_directory="chroma_db",
-#         collection_name="document_sections"
-#     )
-#     collection = db_manager.get_collection()
-#     print(collection)
-    
-#     existing_count = db_manager.get_collection_stats()
-    
-#     # Test data paths
-#     pdf_path = "../hackathon-task\sample-1b\Collection 1\PDFs\South of France - Cities.pdf"
-#     outline_json_path = "../hackathon-task/sample-1a/Datasets/Output.json/E0CCG5S312.json"
-    
-#     # Check if files exist
-#     if not os.path.exists(pdf_path):
-#         print(f"Warning: PDF file not found at {pdf_path}")
-#         return
-    
-#     if not os.path.exists(outline_json_path):
-#         print(f"Warning: JSON file not found at {outline_json_path}")
-#         return
-    
-#     # Load outline data
-#     with open(outline_json_path, 'r') as f:
-#         outline_data = json.load(f)
-    
-#     # Extract sections
-#     print("Extracting sections from PDF...")
-#     start_time = time.time()
-#     sections = extract_sections_from_outline(pdf_path, outline_data)
-#     extraction_time = time.time() - start_time
-#     print(f"Section extraction took {extraction_time:.2f} seconds.")
-#     print(f"Extracted {len(sections)} sections")
-    
-#     # Add sections to ChromaDB only if we have new sections
-#     if sections:
-#         print("Adding sections to ChromaDB...")
-#         start_time = time.time()
-#         add_sections_to_chroma(sections, collection)
-#         add_time = time.time() - start_time
-#         print(f"Adding sections to ChromaDB took {add_time:.2f} seconds.")
-        
-#         # Verify data was added
-#         db_manager.get_collection_stats()
-    
-
-# if __name__ == "__main__":
-#     main()
-
-# round1b_main.py - Main handler for Round 1B challenge
 # main.py - Corrected version for Windows paths
 import json
 import os
@@ -197,9 +137,7 @@ class Round1BProcessor:
                     subsection = {
                         "document": section['document'],
                         "page_number": section['page_number'],
-                        "section_title": f"{section['section_title']} - Part {i+1}",
-                        "refined_text": paragraph,
-                        "importance_rank": len(subsections) + 1
+                        "refined_text": paragraph
                     }
                     subsections.append(subsection)
                     
@@ -214,31 +152,34 @@ class Round1BProcessor:
     def generate_output(self, input_data: PersonaJobInput, sections: List[Dict], 
                        subsections: List[Dict], processing_time: float) -> Dict:
         """Generate the final output JSON"""
+        # Extract just the filename from document paths for input_documents
+        input_doc_names = []
+        for doc in input_data.documents:
+            pdf_path = doc.get('pdf_path', '')
+            filename = os.path.basename(pdf_path)
+            input_doc_names.append(filename)
+        
         return {
             "metadata": {
-                "input_documents": [doc.get('pdf_path', '') for doc in input_data.documents],
+                "input_documents": input_doc_names,
                 "persona": input_data.persona,
                 "job_to_be_done": input_data.job_to_be_done,
-                "processing_timestamp": datetime.now().isoformat(),
-                "processing_time_seconds": round(processing_time, 2),
-                "total_sections_found": len(sections)
+                "processing_timestamp": datetime.now().isoformat()
             },
             "extracted_sections": [
                 {
-                    "document": section["document"],
-                    "page_number": section["page_number"],
+                    "document": os.path.basename(section["document"]) if section["document"] else "Unknown",
                     "section_title": section["section_title"],
-                    "importance_rank": section["importance_rank"]
+                    "importance_rank": section["importance_rank"],
+                    "page_number": section["page_number"]
                 }
                 for section in sections
             ],
             "subsection_analysis": [
                 {
-                    "document": subsection["document"],
-                    "page_number": subsection["page_number"],
-                    "section_title": subsection["section_title"],
+                    "document": os.path.basename(subsection["document"]) if subsection["document"] else "Unknown",
                     "refined_text": subsection["refined_text"],
-                    "importance_rank": subsection["importance_rank"]
+                    "page_number": subsection["page_number"]
                 }
                 for subsection in subsections
             ]
