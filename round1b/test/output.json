@@ -3,260 +3,127 @@
     "input_documents": [
       "E0CCG5S312.pdf"
     ],
-<<<<<<< HEAD
     "persona": "Business Analyst",
     "job_to_be_done": "Tell the main points of Agile methodology",
-    "processing_timestamp": "2025-07-28T23:15:28.197945",
-    "processing_time_seconds": 5.14,
-    "total_sections_found": 15
-  },
-  "extracted_sections": [
-    {
-      "document": "C:\\Users\\shamb\\Downloads\\coding\\projects\\adobe-hack\\hackathon-task\\sample-1a\\Datasets\\Pdfs\\E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content ",
-      "importance_rank": 1
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content ",
-      "importance_rank": 2
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content ",
-      "importance_rank": 3
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-=======
-    "persona": "Travel Planner",
-    "job_to_be_done": "Plan a trip of 4 days for a group of 10 college friends to South of France, focusing on cities, attractions, and logistics",
-    "processing_timestamp": "2025-07-28T23:09:05.324368"
+    "processing_timestamp": "2025-07-28T23:36:06.911787"
   },
   "extracted_sections": [
     {
       "document": "E0CCG5S312.pdf",
-      "section_title": "Table of Contents ",
+      "section_title": "3.2 Content ",
       "importance_rank": 1,
-      "page_number": 3
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "section_title": "Table of Contents ",
-      "importance_rank": 2,
-      "page_number": 3
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "section_title": "2.5 Structure and Course Duration ",
-      "importance_rank": 3,
-      "page_number": 7
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "section_title": "2.5 Structure and Course Duration ",
-      "importance_rank": 4,
-      "page_number": 7
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "section_title": "3. Overview of the Foundation Level Extension – Agile TesterSyllabus ",
-      "importance_rank": 5,
       "page_number": 9
     },
     {
       "document": "E0CCG5S312.pdf",
-      "section_title": "3. Overview of the Foundation Level Extension – Agile TesterSyllabus ",
-      "importance_rank": 6,
-      "page_number": 9
-    },
-    {
-      "document": "E0CCG5S312.pdf",
->>>>>>> 76ccb2b9b1cdbf8994aa15aa9d9cac875bed9198
       "section_title": "3.2 Content ",
+      "importance_rank": 2,
+      "page_number": 9
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "section_title": "3.2 Content ",
+      "importance_rank": 3,
+      "page_number": 9
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "section_title": "Acknowledgements ",
+      "importance_rank": 4,
+      "page_number": 4
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "section_title": "Acknowledgements ",
+      "importance_rank": 5,
+      "page_number": 4
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "section_title": "Acknowledgements ",
+      "importance_rank": 6,
+      "page_number": 4
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "section_title": "3.1 Business Outcomes ",
       "importance_rank": 7,
       "page_number": 9
     },
     {
       "document": "E0CCG5S312.pdf",
-<<<<<<< HEAD
-      "page_number": 9,
-      "section_title": "3.2 Content ",
-      "importance_rank": 5
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content ",
-      "importance_rank": 6
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content ",
-      "importance_rank": 7
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content ",
-      "importance_rank": 8
-    },
-    {
-      "document": "C:\\Users\\shamb\\Downloads\\coding\\projects\\adobe-hack\\hackathon-task\\sample-1a\\Datasets\\Pdfs\\E0CCG5S312.pdf",
-      "page_number": 4,
-      "section_title": "Acknowledgements ",
-      "importance_rank": 9
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 4,
-      "section_title": "Acknowledgements ",
-      "importance_rank": 10
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 4,
-      "section_title": "Acknowledgements ",
-      "importance_rank": 11
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 4,
-      "section_title": "Acknowledgements ",
-      "importance_rank": 12
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 4,
-      "section_title": "Acknowledgements ",
-      "importance_rank": 13
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 4,
-      "section_title": "Acknowledgements ",
-      "importance_rank": 14
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 4,
-      "section_title": "Acknowledgements ",
-      "importance_rank": 15
-=======
-      "section_title": "3.2 Content ",
+      "section_title": "3.1 Business Outcomes ",
       "importance_rank": 8,
       "page_number": 9
     },
     {
       "document": "E0CCG5S312.pdf",
-      "section_title": "Revision History ",
+      "section_title": "3.1 Business Outcomes ",
       "importance_rank": 9,
+      "page_number": 9
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "section_title": "Table of Contents ",
+      "importance_rank": 10,
+      "page_number": 3
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "section_title": "Table of Contents ",
+      "importance_rank": 11,
+      "page_number": 3
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "section_title": "Table of Contents ",
+      "importance_rank": 12,
+      "page_number": 3
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "section_title": "Revision History ",
+      "importance_rank": 13,
       "page_number": 2
     },
     {
       "document": "E0CCG5S312.pdf",
       "section_title": "Revision History ",
-      "importance_rank": 10,
+      "importance_rank": 14,
       "page_number": 2
     },
     {
       "document": "E0CCG5S312.pdf",
-      "section_title": "2.2 Career Paths for Testers ",
-      "importance_rank": 11,
-      "page_number": 6
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "section_title": "2.2 Career Paths for Testers ",
-      "importance_rank": 12,
-      "page_number": 6
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "section_title": "2.3 Learning Objectives ",
-      "importance_rank": 13,
-      "page_number": 6
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "section_title": "2.3 Learning Objectives ",
-      "importance_rank": 14,
-      "page_number": 6
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "section_title": "Acknowledgements ",
+      "section_title": "Revision History ",
       "importance_rank": 15,
-      "page_number": 4
->>>>>>> 76ccb2b9b1cdbf8994aa15aa9d9cac875bed9198
+      "page_number": 2
     }
   ],
   "subsection_analysis": [
     {
-<<<<<<< HEAD
-      "document": "C:\\Users\\shamb\\Downloads\\coding\\projects\\adobe-hack\\hackathon-task\\sample-1a\\Datasets\\Pdfs\\E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content  - Part 1",
-      "refined_text": "The tester should be proficient in utilizing Agile methodologies and tools to deliver high-quality software within a collaborative, iterative environment.",
-      "importance_rank": 1
-    },
-    {
       "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content  - Part 1",
-      "refined_text": "The tester should be proficient in utilizing Agile methodologies and tools to deliver effective testing within a collaborative, iterative environment.",
-      "importance_rank": 2
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content  - Part 1",
-      "refined_text": "The tester should be able to effectively contribute to Agile projects by understanding and applying various testing methodologies and tools.",
-      "importance_rank": 3
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content  - Part 1",
-      "refined_text": "The tester should be proficient in utilizing Agile methodologies and tools to deliver effective testing within a collaborative, iterative environment.",
-      "importance_rank": 4
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "page_number": 9,
-      "section_title": "3.2 Content  - Part 1",
-      "refined_text": "The tester should be proficient in utilizing Agile methodologies, including test-driven development, acceptance testing, and continuous integration, to ensure product quality within an",
-      "importance_rank": 5
-=======
-      "document": "E0CCG5S312.pdf",
-      "refined_text": "Table of Contents \nRevision History 3\nTable of Contents 4\n1. Introduction to the Foundation Level Extensions 6\n2. Introduction to Foundation Level Agile Tester Extension 7\n2.1 Intended Audience 7\n2.2 Career Paths for Testers 7\n2.3 Learning Objectives 7\n2.4 Entry Requirements 8\n2.5 Structure and Course Duration 8\n2.6 Keeping It Current 9\n3. Overview of the Foundation Level Extension – Agile Tester Syllabus 10\n3.1 Business Outcomes 10\n3.2 Content 10\n4. References 12\n4.1 Trademarks 12\n4.2 Documents and Web Sites 12\nVersion 2014 Page 4 of 12 May 31, 2014\n© International Software Testing Qualifications Board\nInternational Overview Software Testing\nFoundation Level Extension – Agile Tester Qualifications\nBoard",
-      "page_number": 3
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "refined_text": "Table of Contents \nRevision History 3\nTable of Contents 4\n1. Introduction to the Foundation Level Extensions 6\n2. Introduction to Foundation Level Agile Tester Extension 7\n2.1 Intended Audience 7\n2.2 Career Paths for Testers 7\n2.3 Learning Objectives 7\n2.4 Entry Requirements 8\n2.5 Structure and Course Duration 8\n2.6 Keeping It Current 9\n3. Overview of the Foundation Level Extension – Agile Tester Syllabus 10\n3.1 Business Outcomes 10\n3.2 Content 10\n4. References 12\n4.1 Trademarks 12\n4.2 Documents and Web Sites 12\nVersion 2014 Page 4 of 12 May 31, 2014\n© International Software Testing Qualifications Board\nInternational Overview Software Testing\nFoundation Level Extension – Agile Tester Qualifications\nBoard",
-      "page_number": 3
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "refined_text": "2.5 Structure and Course Duration \nThe Foundation Level Extension – Agile Tester syllabus has no shared or common elements with the\nFoundation Level syllabus.\nThe syllabi must be taught in the following minimum number of days:\nSyllabus Days\nBaseline: Foundation 3\nExtension: Agile Tester 2\nThe following figure shows the structure of the Agile Tester Extension and its relationship to the\nFoundation Level.\nVersion 2014 Page 8 of 12 May 31, 2014\n© International Software Testing Qualifications Board\nQualifications Board\nInternational Overview Software Testing\nFoundation Level Extension – Agile Tester",
-      "page_number": 7
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "refined_text": "2.5 Structure and Course Duration \nThe Foundation Level Extension – Agile Tester syllabus has no shared or common elements with the\nFoundation Level syllabus.\nThe syllabi must be taught in the following minimum number of days:\nSyllabus Days\nBaseline: Foundation 3\nExtension: Agile Tester 2\nThe following figure shows the structure of the Agile Tester Extension and its relationship to the\nFoundation Level.\nVersion 2014 Page 8 of 12 May 31, 2014\n© International Software Testing Qualifications Board\nQualifications Board\nInternational Overview Software Testing\nFoundation Level Extension – Agile Tester",
-      "page_number": 7
-    },
-    {
-      "document": "E0CCG5S312.pdf",
-      "refined_text": "3. Overview of the Foundation Level Extension – Agile TesterSyllabus \nQualifications Board\nInternational Overview Software Testing\nFoundation Level Extension – Agile Tester\n3. Overview of the Foundation Level Extension – Agile Tester\nSyllabus",
+      "refined_text": "This chapter outlines the essential knowledge a tester needs to effectively contribute to an Agile project, encompassing testing methodologies, roles, and the importance of continuous improvement.",
       "page_number": 9
->>>>>>> 76ccb2b9b1cdbf8994aa15aa9d9cac875bed9198
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "refined_text": "This chapter outlines the essential knowledge a tester needs to effectively contribute to Agile projects, emphasizing collaboration, iterative processes, and continuous improvement.",
+      "page_number": 9
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "refined_text": "This chapter outlines the essential knowledge a tester needs to effectively contribute to an Agile project, emphasizing collaboration, iterative processes, and continuous improvement.",
+      "page_number": 9
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "refined_text": "This document represents a collaborative effort from the International Software Testing Qualifications Board Foundation Level Working Group, acknowledging contributions from various experts and stakeholders in the development of the Foundation Agile Extension Syllabus.",
+      "page_number": 4
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "refined_text": "This document represents a collaborative effort from the International Software Testing Qualifications Board Foundation Level Working Group, acknowledging contributions from various stakeholders and incorporating feedback from the National Boards and Agile experts.",
+      "page_number": 4
     }
   ]
 }

@@ -6,18 +6,43 @@ llm = Llama.from_pretrained(
     verbose=False
 )
 
-def get_response(prompt,persona):
+def get_response(prompt, persona):
+    max_context_tokens = 512
+    max_output_tokens = 64
+
+    system_prompt = f"Summarize the following text from point of view of a {persona} in exactly one sentence. No extra commentary."
+    system_tokens = len(llm.tokenize(system_prompt.encode("utf-8")))
 
     words = prompt.split()
-    estimated_max_words = 512 * 0.75  # heuristic for token-to-word ratio
-    truncated_words = words[:int(estimated_max_words)]
-    truncated_prompt = " ".join(truncated_words)
 
+    # Use binary search for fast truncation
+    low, high = 0, len(words)
+    best_prompt = ""
+
+    while low <= high:
+        mid = (low + high) // 2
+        test_prompt = " ".join(words[:mid])
+        test_tokens = len(llm.tokenize(test_prompt.encode("utf-8")))
+        total_tokens = system_tokens + test_tokens + max_output_tokens
+
+        if total_tokens <= max_context_tokens:
+            best_prompt = test_prompt
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    # Fallback if no words fit (shouldn't happen)
+    if not best_prompt:
+        best_prompt = "Too long to summarize, so truncated heavily."
 
     messages = [
-        {"role": "system", "content": f"{{Summarize the following text from point of view of a {persona} in exactly one sentence. No extra commentary."},
-        {"role": "user", "content": truncated_prompt}
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": best_prompt}
     ]
-    resp = llm.create_chat_completion(messages=messages)
-    summary = resp["choices"][0]["message"]["content"]
-    return summary.strip()
+
+    try:
+        resp = llm.create_chat_completion(messages=messages)
+        summary = resp["choices"][0]["message"]["content"]
+        return summary.strip()
+    except Exception as e:
+        return f"Error generating response: {e}"
