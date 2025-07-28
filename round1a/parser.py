@@ -5,8 +5,6 @@ import pandas as pd
 from collections import Counter
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
-# You will need to ensure your 'extract' module is available
-# If it's in the same directory, this import will work.
 import extract 
 
 class PDFParser:
@@ -124,8 +122,8 @@ class PDFParser:
             dims = extractor.get_page_dimensions(0)
             PAGE_WIDTH = dims["width"]
             PAGE_HEIGHT = dims["height"]
-        except IndexError:
-            print(f"Warning: Could not get page dimensions for {pdf_path}. Using default values.")
+        except (IndexError, Exception) as e:
+            print(f"Warning: Could not get page dimensions for {pdf_path}. Using default values. Error: {e}")
             PAGE_WIDTH, PAGE_HEIGHT = 612, 792 
 
         sorted_snippets = sorted(texts, key=lambda s: (s['page'], s['y_position'], s['bbox'][0]))
@@ -166,31 +164,36 @@ class PDFParser:
     def parse_and_save(self, pdf_path, output_dir="."):
         if not os.path.exists(pdf_path):
             print(f"Error: PDF file not found at {pdf_path}")
-            return
+            return None
 
-        # Create features
-        new_pdf_df = self._create_features_for_new_pdf(pdf_path)
-        if new_pdf_df.empty:
-            print(f"Could not extract any text lines from {pdf_path}.")
-            return
+        try:
+            # Create features
+            new_pdf_df = self._create_features_for_new_pdf(pdf_path)
+            if new_pdf_df.empty:
+                print(f"Could not extract any text lines from {pdf_path}.")
+                return None
 
-        # Prepare feature matrix and make predictions
-        X_new = new_pdf_df[self.features]
-        predictions_encoded = self.model.predict(X_new)
-        predictions_labels = self.label_encoder.inverse_transform(predictions_encoded)
-        new_pdf_df['predicted_label'] = predictions_labels
-        
-        # Format and save the output
-        final_output = self._format_predictions_to_json(new_pdf_df)
-        
-        if not os.path.exists(output_dir):
-            os.makedirs(output_dir)
+            # Prepare feature matrix and make predictions
+            X_new = new_pdf_df[self.features]
+            predictions_encoded = self.model.predict(X_new)
+            predictions_labels = self.label_encoder.inverse_transform(predictions_encoded)
+            new_pdf_df['predicted_label'] = predictions_labels
             
-        output_filename = os.path.basename(pdf_path).replace('.pdf', '.json')
-        output_filepath = os.path.join(output_dir, output_filename)
-        
-        with open(output_filepath, 'w', encoding='utf-8') as f:
-            json.dump(final_output, f, indent=4)
+            # Format and save the output
+            final_output = self._format_predictions_to_json(new_pdf_df)
             
-        print(f"Prediction complete. Output saved to {output_filepath}")
-        return final_output
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+                
+            output_filename = os.path.basename(pdf_path).replace('.pdf', '.json')
+            output_filepath = os.path.join(output_dir, output_filename)
+            
+            with open(output_filepath, 'w', encoding='utf-8') as f:
+                json.dump(final_output, f, indent=4)
+                
+            print(f"Prediction complete. Output saved to {output_filepath}")
+            return final_output
+            
+        except Exception as e:
+            print(f"Error processing {pdf_path}: {str(e)}")
+            return None
