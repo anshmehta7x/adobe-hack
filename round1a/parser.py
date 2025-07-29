@@ -39,7 +39,6 @@ class PDFParser:
             full_text = "".join(s['text'] for s in line_snippets).strip()
             if not full_text:
                 continue
-            
             toc_pattern = re.compile(r'^(.*?)\\.{3,}\\s*\\d+$')
             match = toc_pattern.match(full_text)
             if match:
@@ -152,7 +151,7 @@ class PDFParser:
             outline.append({
                 "level": row['predicted_label'],
                 "text": row['text'],
-                "page": row['page'] + 1 
+                "page": row['page'] + 1
             })
             
         output_json = {
@@ -167,19 +166,16 @@ class PDFParser:
             return None
 
         try:
-            # Create features
             new_pdf_df = self._create_features_for_new_pdf(pdf_path)
             if new_pdf_df.empty:
                 print(f"Could not extract any text lines from {pdf_path}.")
                 return None
 
-            # Prepare feature matrix and make predictions
             X_new = new_pdf_df[self.features]
             predictions_encoded = self.model.predict(X_new)
             predictions_labels = self.label_encoder.inverse_transform(predictions_encoded)
             new_pdf_df['predicted_label'] = predictions_labels
             
-            # Format and save the output
             final_output = self._format_predictions_to_json(new_pdf_df)
             
             if not os.path.exists(output_dir):

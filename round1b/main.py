@@ -43,7 +43,6 @@ class Round1BProcessor:
             pdf_path = doc_info.get('pdf_path', '')
             outline_path = doc_info.get('outline_path', '')
             
-            # Convert relative paths to absolute paths within the input directory
             if not os.path.isabs(pdf_path):
                 pdf_path = os.path.join(input_dir, pdf_path)
             if not os.path.isabs(outline_path):
@@ -52,7 +51,6 @@ class Round1BProcessor:
             print(f"Processing document: {pdf_path}")
             print(f"Using outline: {outline_path}")
             
-            # Check if files exist
             if not os.path.exists(pdf_path):
                 print(f"Warning: PDF file not found at {pdf_path}")
                 continue
@@ -62,11 +60,9 @@ class Round1BProcessor:
                 continue
             
             try:
-                # Load outline data
                 with open(outline_path, 'r', encoding='utf-8') as f:
                     outline_data = json.load(f)
                 
-                # Extract sections from this document
                 sections = extract_sections_from_outline(pdf_path, outline_data)
                 all_sections.extend(sections)
                 
@@ -82,7 +78,6 @@ class Round1BProcessor:
         return f"Persona: {persona}. Task: {job_to_be_done}"
     
     def rank_sections_by_relevance(self, query: str, top_k: int = 20) -> List[Dict]:
-       
         try:
             results = self.collection.query(
                 query_texts=[query],
@@ -117,16 +112,14 @@ class Round1BProcessor:
             return []
     
     def extract_subsections(self, sections: List[Dict], persona: str, max_subsections: int = 10) -> List[Dict]:
-        """Extract and rank subsections from top sections"""
         subsections = []
         
-        for section in sections[:5]:  # Take top 5 sections for subsection analysis
+        for section in sections[:5]:
             content = section['content']
             
-            # Simple subsection extraction based on paragraph breaks
             paragraphs = [p.strip() for p in content.split('\n\n') if p.strip()]
             
-            for i, paragraph in enumerate(paragraphs[:3]):  # Top 3 paragraphs per section
+            for i, paragraph in enumerate(paragraphs[:3]):
                 if len(paragraph) > 100: 
                     try:
                         refined_text = llm.get_response(paragraph, persona)
@@ -153,7 +146,6 @@ class Round1BProcessor:
     
     def generate_output(self, input_data: PersonaJobInput, sections: List[Dict], 
                        subsections: List[Dict], processing_time: float) -> Dict:
-        """Generate the final output JSON"""
         return {
             "metadata": {
                 "input_documents": [os.path.basename(doc.get('pdf_path', '')) for doc in input_data.documents],
@@ -185,31 +177,26 @@ class Round1BProcessor:
         }
     
     def process_challenge(self, input_path: str, output_path: str, input_dir: str = "/app/input"):
-        """Main processing function for the challenge"""
         start_time = time.time()
         
         try:
             print("=== Round 1B Processing Started ===")
             
-            # Load input
             print(f"Loading input from: {input_path}")
             input_data = self.load_input_json(input_path)
             print(f"Persona: {input_data.persona}")
             print(f"Job to be done: {input_data.job_to_be_done}")
             print(f"Documents to process: {len(input_data.documents)}")
             
-            # Process documents and extract sections
             print("\nExtracting sections from documents...")
             sections = self.process_documents(input_data, input_dir)
             
             if not sections:
                 raise Exception("No sections were extracted from any documents")
             
-            # Add sections to ChromaDB
             print(f"\nAdding {len(sections)} sections to ChromaDB...")
             add_sections_to_chroma(sections, self.collection)
             
-            # Build query and rank sections
             query = self.build_query_from_persona_job(input_data.persona, input_data.job_to_be_done)
             print(f"\nQuerying with: {query}")
             
@@ -218,15 +205,12 @@ class Round1BProcessor:
             if not ranked_sections:
                 raise Exception("No relevant sections found for the given persona and job")
             
-            # Extract subsections
             print(f"\nExtracting subsections from top {min(5, len(ranked_sections))} sections...")
             subsections = self.extract_subsections(ranked_sections, input_data.persona)
             
-            # Generate output
             processing_time = time.time() - start_time
             output_data = self.generate_output(input_data, ranked_sections, subsections, processing_time)
             
-            # Save output
             print(f"\nSaving output to: {output_path}")
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
             with open(output_path, 'w', encoding='utf-8') as f:
@@ -238,7 +222,6 @@ class Round1BProcessor:
             
         except Exception as e:
             print(f"Error during processing: {e}")
-   
             error_output = {
                 "error": str(e),
                 "timestamp": datetime.now().isoformat(),
@@ -261,11 +244,9 @@ class Round1BProcessor:
 
 
 def main():
-    """Main function for Docker container execution"""
     input_dir = "/app/input"
     output_dir = "/app/output"
     
-    # Find all JSON input files in the input directory
     input_pattern = os.path.join(input_dir, "*.json")
     input_files = glob.glob(input_pattern)
     
@@ -274,18 +255,15 @@ def main():
         print("Please ensure input JSON files are mounted in the /app/input directory")
         return
     
-    # Process each input file
     for input_file in input_files:
         try:
             print(f"\n{'='*60}")
             print(f"Processing: {os.path.basename(input_file)}")
             print(f"{'='*60}")
             
-            # Generate output filename based on input filename
             input_basename = os.path.splitext(os.path.basename(input_file))[0]
             output_file = os.path.join(output_dir, f"{input_basename}_output.json")
             
-            # Initialize processor and run
             processor = Round1BProcessor()
             processor.process_challenge(input_file, output_file, input_dir)
             

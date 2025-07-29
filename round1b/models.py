@@ -1,4 +1,3 @@
-# models.py
 from dataclasses import dataclass
 from typing import List, Dict, Any
 from datetime import datetime
@@ -26,7 +25,5 @@ class ExtractedSection:
     page_number: int
     relevance_score: float = 0.0
 
-# You can also add utility functions here
 def create_section_id(document_name: str, page: int, index: int) -> str:
-    """Create unique ID for a section"""
     return f"{document_name}_{page}_{index}"

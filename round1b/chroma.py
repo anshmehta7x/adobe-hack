@@ -2,11 +2,6 @@ import uuid
 from typing import List
 
 def add_sections_to_chroma(sections, collection):
-    """
-    Add extracted sections to ChromaDB with improved error handling.
-    :param sections: List of extracted sections.
-    :param collection: ChromaDB collection instance.
-    """
     if not sections:
         print("No sections to add to ChromaDB.")
         return
@@ -17,12 +12,10 @@ def add_sections_to_chroma(sections, collection):
     
     for i, section in enumerate(sections):
         try:
-            # Ensure content is not empty
             if not section.content or not section.content.strip():
                 print(f"Skipping empty section: {section.section_title}")
                 continue
             
-            # Create unique ID
             section_id = f"{section.document_name}_{section.page_number}_{i}_{uuid.uuid4().hex[:8]}"
             
             documents.append(f"{section.section_title}\n{section.content}")
@@ -45,7 +38,6 @@ def add_sections_to_chroma(sections, collection):
         return
     
     try:
-        # Add to ChromaDB in batches if needed
         batch_size = 100
         for i in range(0, len(documents), batch_size):
             batch_docs = documents[i:i+batch_size]
@@ -64,14 +56,7 @@ def add_sections_to_chroma(sections, collection):
         print(f"Error adding sections to ChromaDB: {e}")
 
 def query_chroma(query, collection, top_k=5):
-    """
-    Query ChromaDB for the most relevant sections with improved formatting.
-    :param query: Query text (e.g., persona + job-to-be-done).
-    :param collection: ChromaDB collection instance.
-    :param top_k: Number of top results to retrieve.
-    """
     try:
-        # Perform similarity search
         results = collection.query(
             query_texts=[query],
             n_results=top_k
@@ -81,7 +66,6 @@ def query_chroma(query, collection, top_k=5):
             print("No relevant documents found for the query.")
             return
         
-        # Format and print results
         documents = results['documents'][0]
         metadatas = results['metadatas'][0]
         distances = results.get('distances', [[]])[0]
@@ -97,7 +81,6 @@ def query_chroma(query, collection, top_k=5):
             if distance is not None:
                 print(f"Similarity Score: {1 - distance:.4f}")
             
-            # Show preview of content
             preview_length = 300
             content_preview = doc[:preview_length]
             if len(doc) > preview_length:
@@ -110,9 +93,6 @@ def query_chroma(query, collection, top_k=5):
         print(f"Error querying ChromaDB: {e}")
 
 def search_by_metadata(collection, document_name=None, page_number=None, title_contains=None):
-    """
-    Search by metadata filters
-    """
     try:
         where_clause = {}
         
@@ -121,7 +101,6 @@ def search_by_metadata(collection, document_name=None, page_number=None, title_c
         if page_number:
             where_clause["page_number"] = page_number
         if title_contains:
-            # ChromaDB doesn't support contains, so we'll get all and filter
             pass
         
         if where_clause:

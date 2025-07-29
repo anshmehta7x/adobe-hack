@@ -1,9 +1,7 @@
-# chroma_utils.py - Utility script for managing ChromaDB
 from dbManager import ChromaDBManager
 import os
 
 def inspect_database():
-    """Inspect the current state of the database"""
     db_manager = ChromaDBManager()
     collection = db_manager.get_collection()
     
@@ -11,14 +9,12 @@ def inspect_database():
     print("COMPLETE CHROMADB DATABASE INSPECTION")
     print("=" * 120)
     
-    # Get collection stats
     count = db_manager.get_collection_stats()
     
     if count == 0:
         print("Database is empty.")
         return
     
-    # Get ALL documents
     try:
         all_results = collection.get()
         
@@ -26,12 +22,10 @@ def inspect_database():
         print("\nFULL DATABASE CONTENTS:")
         print("=" * 120)
         
-        # Create table header
         header = f"{'ID':<40} | {'Title':<30} | {'Doc Name':<20} | {'Page':<5} | {'Length':<8} | {'Preview':<30}"
         print(header)
         print("-" * 120)
         
-        # Display all documents in table format
         for i, (doc, meta, doc_id) in enumerate(zip(
             all_results['documents'], 
             all_results['metadatas'], 
@@ -50,7 +44,6 @@ def inspect_database():
         print(f"Error retrieving documents: {e}")
 
 def view_full_document():
-    """View complete content of a specific document"""
     db_manager = ChromaDBManager()
     collection = db_manager.get_collection()
     
@@ -59,7 +52,6 @@ def view_full_document():
         print("Database is empty.")
         return
     
-    # First show all document IDs
     try:
         all_results = collection.get()
         print("\nAvailable Document IDs:")
@@ -99,7 +91,6 @@ def view_full_document():
 
 
 def reset_database():
-    """Reset the database (delete all data)"""
     response = input("Are you sure you want to delete all data? (yes/no): ")
     if response.lower() == 'yes':
         db_manager = ChromaDBManager()
@@ -109,7 +100,6 @@ def reset_database():
         print("Reset cancelled.")
 
 def test_query():
-    """Test a query against the database"""
     db_manager = ChromaDBManager()
     collection = db_manager.get_collection()
     
@@ -126,7 +116,6 @@ def test_query():
         print("Empty query provided.")
 
 def check_storage_location():
-    """Check where the data is stored"""
     persist_dir = "chroma_db"
     abs_path = os.path.abspath(persist_dir)
     
@@ -135,7 +124,6 @@ def check_storage_location():
     if os.path.exists(abs_path):
         print("✅ Storage directory exists")
         
-        # List contents
         contents = os.listdir(abs_path)
         if contents:
             print("Contents:")
@@ -152,7 +140,6 @@ def check_storage_location():
         print("❌ Storage directory does not exist yet")
 
 def main():
-    """Main menu for database utilities"""
     while True:
         print("\n" + "=" * 50)
         print("CHROMADB UTILITIES - COMPLETE DATABASE VIEWER")

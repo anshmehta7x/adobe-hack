@@ -1,4 +1,3 @@
-# db_manager.py - Centralized ChromaDB configuration
 import chromadb
 from chromadb.config import Settings
 from chromadb.utils import embedding_functions
@@ -7,14 +6,11 @@ import os
 
 class ChromaDBManager:
     def __init__(self, persist_directory="chroma_db", collection_name="document_sections"):
-        
         self.persist_directory = persist_directory
         self.collection_name = collection_name
         
-        # Ensure the directory exists
         os.makedirs(persist_directory, exist_ok=True)
         
-        # Initialize ChromaDB client with proper settings
         self.client = chromadb.PersistentClient(
             path=persist_directory,
             settings=Settings(
@@ -23,12 +19,10 @@ class ChromaDBManager:
             )
         )
         
-        # Initialize embedding function
         self.embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
             model_name="all-MiniLM-L6-v2"
         )
         
-        # Get or create collection
         self.collection = self.client.get_or_create_collection(
             name=collection_name, 
             embedding_function=self.embedding_function
@@ -47,7 +41,6 @@ class ChromaDBManager:
         except Exception as e:
             print(f"Collection may not exist: {e}")
         
-        # Recreate collection
         self.collection = self.client.get_or_create_collection(
             name=self.collection_name, 
             embedding_function=self.embedding_function

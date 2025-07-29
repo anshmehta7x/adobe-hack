@@ -15,7 +15,6 @@ def get_response(prompt, persona):
 
     words = prompt.split()
 
-    # Use binary search for fast truncation
     low, high = 0, len(words)
     best_prompt = ""
 
@@ -45,10 +44,3 @@ def get_response(prompt, persona):
         return summary.strip()
     except Exception as e:
         return f"Error generating response: {e}"
-
-# # Example usage
-# if __name__ == "__main__":
-#     example_prompt = "The universe is vast and full of mysteries. Scientists are constantly exploring the cosmos to understand its origins and the fundamental laws that govern it. "
-#     example_persona = "scientist"
-#     response = get_response(example_prompt, example_persona)
-#     print(response)  # Output the summary

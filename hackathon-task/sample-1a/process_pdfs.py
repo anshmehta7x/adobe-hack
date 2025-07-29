@@ -3,18 +3,14 @@ import json
 from pathlib import Path
 
 def process_pdfs():
-    # Get input and output directories
     input_dir = Path("/app/input")
     output_dir = Path("/app/output")
     
-    # Create output directory if it doesn't exist
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    # Get all PDF files
     pdf_files = list(input_dir.glob("*.pdf"))
     
     for pdf_file in pdf_files:
-        # Create dummy JSON data
         dummy_data = {
             "title": "Understanding AI",
             "outline": [
@@ -36,7 +32,6 @@ def process_pdfs():
             ]
         }
         
-        # Create output JSON file
         output_file = output_dir / f"{pdf_file.stem}.json"
         with open(output_file, "w") as f:
             json.dump(dummy_data, f, indent=2)
