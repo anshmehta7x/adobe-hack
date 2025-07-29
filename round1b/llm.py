@@ -1,9 +1,9 @@
 from llama_cpp import Llama
 
-llm = Llama.from_pretrained(
-    repo_id="stduhpf/google-gemma-3-1b-it-qat-q4_0-gguf-small",
-    filename="gemma-3-1b-it-q4_0_s.gguf",
-    verbose=False
+llm = llm = Llama(
+    model_path="/app/models/gemma-3-1b-it-q4_0_s.gguf",
+    verbose=False,
+    n_ctx=512 # Setting context size is good practice
 )
 
 def get_response(prompt, persona):
@@ -46,3 +46,10 @@ def get_response(prompt, persona):
         return summary.strip()
     except Exception as e:
         return f"Error generating response: {e}"
+
+# Example usage
+if __name__ == "__main__":
+    example_prompt = "The universe is vast and full of mysteries. Scientists are constantly exploring the cosmos to understand its origins and the fundamental laws that govern it. "
+    example_persona = "scientist"
+    response = get_response(example_prompt, example_persona)
+    print(response)  # Output the summary
