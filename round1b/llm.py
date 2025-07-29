@@ -3,7 +3,7 @@ from llama_cpp import Llama
 llm = llm = Llama(
     model_path="/app/models/gemma-3-1b-it-q4_0_s.gguf",
     verbose=False,
-    n_ctx=512 # Setting context size is good practice
+    n_ctx=512
 )
 
 def get_response(prompt, persona):
@@ -31,7 +31,6 @@ def get_response(prompt, persona):
         else:
             high = mid - 1
 
-    # Fallback if no words fit (shouldn't happen)
     if not best_prompt:
         best_prompt = "Too long to summarize, so truncated heavily."
 
@@ -47,9 +46,9 @@ def get_response(prompt, persona):
     except Exception as e:
         return f"Error generating response: {e}"
 
-# Example usage
-if __name__ == "__main__":
-    example_prompt = "The universe is vast and full of mysteries. Scientists are constantly exploring the cosmos to understand its origins and the fundamental laws that govern it. "
-    example_persona = "scientist"
-    response = get_response(example_prompt, example_persona)
-    print(response)  # Output the summary
+# # Example usage
+# if __name__ == "__main__":
+#     example_prompt = "The universe is vast and full of mysteries. Scientists are constantly exploring the cosmos to understand its origins and the fundamental laws that govern it. "
+#     example_persona = "scientist"
+#     response = get_response(example_prompt, example_persona)
+#     print(response)  # Output the summary
