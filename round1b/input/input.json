@@ -1,0 +1,11 @@
+{
+  "persona": "Business Analyst",
+  "job_to_be_done": "Tell the main points of Agile methodology",
+  "documents": [
+    {
+      "pdf_path": "../hackathon-task/sample-1a/Datasets/Pdfs/E0CCG5S312.pdf",
+      "outline_path": "../hackathon-task/sample-1a/Datasets/Output.json/E0CCG5S312.json",
+      "document_type": "Business"
+    }
+  ]
+}
