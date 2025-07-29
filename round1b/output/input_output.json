@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "input_documents": [
+      "E0CCG5S312.pdf"
+    ],
+    "persona": "Business Analyst",
+    "job_to_be_done": "Tell the main points of Agile methodology",
+    "processing_timestamp": "2025-07-29T07:46:07.593661",
+    "processing_time_seconds": 7.19,
+    "total_sections_found": 15
+  },
+  "extracted_sections": [
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 9,
+      "section_title": "3.2 Content ",
+      "importance_rank": 1
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 4,
+      "section_title": "Acknowledgements ",
+      "importance_rank": 2
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 9,
+      "section_title": "3.1 Business Outcomes ",
+      "importance_rank": 3
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 3,
+      "section_title": "Table of Contents ",
+      "importance_rank": 4
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 2,
+      "section_title": "Revision History ",
+      "importance_rank": 5
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 6,
+      "section_title": "2.1 Intended Audience ",
+      "importance_rank": 6
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 9,
+      "section_title": "3. Overview of the Foundation Level Extension – Agile TesterSyllabus ",
+      "importance_rank": 7
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 6,
+      "section_title": "2. Introduction to Foundation Level Agile Tester Extension ",
+      "importance_rank": 8
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 8,
+      "section_title": "2.6 Keeping It Current ",
+      "importance_rank": 9
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 7,
+      "section_title": "2.5 Structure and Course Duration ",
+      "importance_rank": 10
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 6,
+      "section_title": "2.3 Learning Objectives ",
+      "importance_rank": 11
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 6,
+      "section_title": "2.2 Career Paths for Testers ",
+      "importance_rank": 12
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 5,
+      "section_title": "1. Introduction to the Foundation Level Extensions ",
+      "importance_rank": 13
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 7,
+      "section_title": "2.4 Entry Requirements ",
+      "importance_rank": 14
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 11,
+      "section_title": "4.2 Documents and Web Sites ",
+      "importance_rank": 15
+    }
+  ],
+  "subsection_analysis": [
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 9,
+      "section_title": "3.2 Content  - Part 1",
+      "refined_text": "This chapter outlines the essential knowledge a tester needs to effectively contribute to an Agile project, emphasizing collaboration, iterative processes, and the importance of continuous improvement.",
+      "importance_rank": 1
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 4,
+      "section_title": "Acknowledgements  - Part 1",
+      "refined_text": "This document represents a collaborative effort from the International Software Testing Qualifications Board Foundation Level Working Group, reflecting a thorough review and feedback process undertaken by a team of experts and stakeholders.",
+      "importance_rank": 2
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 9,
+      "section_title": "3.1 Business Outcomes  - Part 1",
+      "refined_text": "The candidate’s Agile Tester Foundation Level certification is expected to enable effective collaboration, adaptation, and support within an Agile team.",
+      "importance_rank": 3
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 3,
+      "section_title": "Table of Contents  - Part 1",
+      "refined_text": "The Foundation Level Agile Tester Extension is a structured course designed to provide testers with the skills and knowledge needed to effectively test agile software development processes.",
+      "importance_rank": 4
+    },
+    {
+      "document": "E0CCG5S312.pdf",
+      "page_number": 2,
+      "section_title": "Revision History  - Part 1",
+      "refined_text": "The Business Outcomes and Chapters are being revised to align with the Agile Extension, incorporating feedback from the Working Group.",
+      "importance_rank": 5
+    }
+  ]
+}
